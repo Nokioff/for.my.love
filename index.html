@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Полгода вместе ❤</title>
+<title>Для любимой ❤</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
@@ -44,13 +44,12 @@
     animation: floatUp linear infinite;
   }
 
-  /* Убрали класс heart, оставили только точки, сделали их чуть больше */
   .particle.dot {
     width: 6px; 
     height: 6px;
     background-color: #d4af37;
     border-radius: 50%;
-    box-shadow: 0 0 10px #d4af37; /* Добавили свечение */
+    box-shadow: 0 0 10px #d4af37; 
   }
   
   @keyframes floatUp {
@@ -93,6 +92,7 @@
 
   .cover p {
     margin-top: 15px;
+    margin-bottom: 40px;
     font-size: 0.85rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -100,14 +100,23 @@
     animation: rise 1.4s 0.3s ease both;
   }
 
-  .arrow {
-    position: absolute;
-    bottom: 30px;
-    font-size: 2rem;
-    color: #8c6f56;
+  .start-btn {
+    background: #008080; 
+    color: #ffffff;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
     cursor: pointer;
-    padding: 15px;
-    animation: float 2s ease-in-out infinite;
+    box-shadow: 0 4px 15px rgba(0, 128, 128, 0.3);
+    transition: transform 0.2s ease, background 0.2s ease;
+    animation: rise 1.4s 0.6s ease both;
+  }
+
+  .start-btn:active {
+    transform: scale(0.95);
+    background: #006666;
   }
 
   @keyframes rise {
@@ -150,16 +159,17 @@
     flex-direction: column-reverse; 
   }
 
+  /* Ускорили анимации, чтобы при 11 слайдах не было задержек */
   .slide.active .slide-text {
-    animation: slideUp 0.7s ease forwards;
+    animation: slideUp 0.5s ease forwards;
   }
 
   .slide.active .slide-image {
-    animation: scaleIn 0.7s ease forwards;
+    animation: scaleIn 0.5s ease forwards;
   }
 
   @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(15px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
@@ -225,8 +235,8 @@
 
   .controls button {
     flex: 1;
-    background: #8c6f56;
-    color: #f6efe6;
+    background: #008080; 
+    color: #ffffff;
     border: none;
     padding: 14px 10px;
     border-radius: 30px;
@@ -234,6 +244,12 @@
     cursor: pointer;
     font-size: 0.95rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .controls button:active {
+    background: #006666;
+    transform: scale(0.95);
   }
 
   /* ================== ФИНАЛЬНЫЙ ЭКРАН ================== */
@@ -277,14 +293,21 @@
   }
 
   .restart-btn {
-    background: transparent;
-    color: #8c6f56;
-    border: 1px solid #8c6f56;
-    padding: 12px 25px;
+    background: #008080; 
+    color: #ffffff;
+    border: none;
+    padding: 12px 30px;
     border-radius: 30px;
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
     cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 128, 128, 0.3);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .restart-btn:active {
+    background: #006666;
+    transform: scale(0.95);
   }
 
   /* ================== ДЛЯ БОЛЬШИХ ЭКРАНОВ ================== */
@@ -297,7 +320,7 @@
       text-align: left;
     }
     .slide-text .caption {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
     .slide-image {
       flex: 1;
@@ -315,6 +338,11 @@
     .final-screen h2 {
       font-size: 2.5rem;
     }
+    
+    .start-btn:hover, .controls button:hover, .restart-btn:hover {
+      background: #006666;
+      transform: translateY(-2px);
+    }
   }
 </style>
 </head>
@@ -323,50 +351,131 @@
   <div class="hearts-bg" id="heartsBg"></div>
 
   <section class="cover" id="cover">
-    <h1>Полгода вместе</h1>
-    <p>и это только начало</p>
-    <div class="arrow" id="startBtn">↓</div>
+    <h1>Сашуль, я сделал этот сайт, специально для тебя</h1>
+    <p>Я хочу, чтобы ты и я, вспомнили наши самые лучшие с тобой дни</p>
+    <button class="start-btn" id="startBtn">Нажми</button>
   </section>
 
   <section class="gallery-container" id="gallery">
     
+    <!-- Слайд 1 -->
     <div class="slide active">
       <div class="slide-text">
-        <span class="count">01 / 04</span>
-        <p class="caption">Тут наше первое фото. Помню, как мы смеялись над этой случайной картинкой.</p>
+        <span class="count">01 / 11</span>
+        <p class="caption">А помнишь, Сашуль, нашу с тобой первую совместную фотку? </p>
       </div>
       <div class="slide-image">
         <img src="1.jpg" alt="Фото 1" class="clickable-img">
       </div>
     </div>
 
+    <!-- Слайд 2 -->
     <div class="slide">
       <div class="slide-text">
-        <span class="count">02 / 04</span>
-        <p class="caption">Этот день был особенно теплым. Твой смех до сих пор в голове.</p>
+        <span class="count">02 / 11</span>
+        <p class="caption">А помнишь, как ты подарила мне эту резинку, о которой я безумно мечтал</p>
       </div>
       <div class="slide-image">
         <img src="2.jpg" alt="Фото 2" class="clickable-img">
       </div>
     </div>
 
+    <!-- Слайд 3 -->
     <div class="slide">
       <div class="slide-text">
-        <span class="count">03 / 04</span>
-        <p class="caption">Здесь мы просто гуляли и никуда не спешили. Мой любимый кадр.</p>
+        <span class="count">03 / 11</span>
+        <p class="caption">А как мы с тобой сидели у тебя вдвоем, как нам было весело?</p>
       </div>
       <div class="slide-image">
         <img src="3.jpg" alt="Фото 3" class="clickable-img">
       </div>
     </div>
 
+    <!-- Слайд 4 -->
     <div class="slide">
       <div class="slide-text">
-        <span class="count">04 / 04</span>
-        <p class="caption">А это фото с самого обычного дня, который стал особенным, потому что ты была рядом.</p>
+        <span class="count">04 / 11</span>
+        <p class="caption">А вот эту, где ты словила стоп кадр когда взбесила меня?</p>
       </div>
       <div class="slide-image">
         <img src="4.jpg" alt="Фото 4" class="clickable-img">
+      </div>
+    </div>
+
+    <!-- Слайд 5 -->
+    <div class="slide">
+      <div class="slide-text">
+        <span class="count">05 / 11</span>
+        <p class="caption">Все с той же скамейки Сашуль, помнишь?</p>
+      </div>
+      <div class="slide-image">
+        <img src="5.jpg" alt="Фото 5" class="clickable-img">
+      </div>
+    </div>
+
+    <!-- Слайд 6 -->
+    <div class="slide">
+      <div class="slide-text">
+        <span class="count">06 / 11</span>
+        <p class="caption">А помнишь, как я приехал к тебе на дачу, как я безумно скучал по тебе и мы дурачились с тобой?</p>
+      </div>
+      <div class="slide-image">
+        <img src="6.jpg" alt="Фото 6" class="clickable-img">
+      </div>
+    </div>
+
+    <!-- Слайд 7 -->
+    <div class="slide">
+      <div class="slide-text">
+        <span class="count">07 / 11</span>
+        <p class="caption">А мою самую любимую совместную фотку, с вофкой, помнишь милая?</p>
+      </div>
+      <div class="slide-image">
+        <img src="7.jpg" alt="Фото 7" class="clickable-img">
+      </div>
+    </div>
+
+    <!-- Слайд 8 -->
+    <div class="slide">
+      <div class="slide-text">
+        <span class="count">08 / 11</span>
+        <p class="caption">Как я ради тебя ехал к тебе, только для того, чтобы увидеть тебя, любимую, помнишь?</p>
+      </div>
+      <div class="slide-image">
+        <img src="8.jpg" alt="Фото 8" class="clickable-img">
+      </div>
+    </div>
+
+    <!-- Слайд 9 -->
+    <div class="slide">
+      <div class="slide-text">
+        <span class="count">09 / 11</span>
+        <p class="caption">А вот и вофка, ну ты помнишь, а вот я забываю про него 😄</p>
+      </div>
+      <div class="slide-image">
+        <img src="9.jpg" alt="Фото 9" class="clickable-img">
+      </div>
+    </div>
+
+    <!-- Слайд 10 -->
+    <div class="slide">
+      <div class="slide-text">
+        <span class="count">10 / 11</span>
+        <p class="caption">Как мы дурачились с тобой у тебя дома, помнишь ведь?</p>
+      </div>
+      <div class="slide-image">
+        <img src="10.jpg" alt="Фото 10" class="clickable-img">
+      </div>
+    </div>
+
+    <!-- Слайд 11 -->
+    <div class="slide">
+      <div class="slide-text">
+        <span class="count">11 / 11</span>
+        <p class="caption">И как мы сделали серьезную фотку перед тем как ты меня провожала, помнишь Сашуленька?</p>
+      </div>
+      <div class="slide-image">
+        <img src="11.jpg" alt="Фото 11" class="clickable-img">
       </div>
     </div>
 
@@ -379,19 +488,18 @@
 
   <section class="final-screen" id="finalScreen">
     <div class="heart">❤</div>
-    <h2>Спасибо за эти полгода.<br>Впереди ещё много кадров.</h2>
+    <h2>Милая, спасибо тебе большое за это все время с тобой<br>Ты действительно стала для меня частью, моей жизни</h2>
     <button class="restart-btn" id="restartBtn">Смотреть сначала</button>
   </section>
 
   <script>
     const heartsBg = document.getElementById('heartsBg');
-    // Создаем 35 частиц (стало больше, так как это только точки)
     for (let i = 0; i < 35; i++) {
       const particle = document.createElement('div');
       particle.className = 'particle dot';
       particle.style.left = Math.random() * 100 + 'vw';
-      particle.style.animationDuration = (Math.random() * 7 + 6) + 's'; // Разная скорость
-      particle.style.animationDelay = Math.random() * 5 + 's'; // Разная задержка
+      particle.style.animationDuration = (Math.random() * 7 + 6) + 's'; 
+      particle.style.animationDelay = Math.random() * 5 + 's'; 
       heartsBg.appendChild(particle);
     }
 
@@ -414,7 +522,7 @@
     function updateControls() {
       const nextBtn = document.getElementById('nextBtn');
       if (currentSlide === totalSlides - 1) {
-        nextBtn.textContent = 'К финалу ✨';
+        nextBtn.textContent = 'К финалу';
       } else {
         nextBtn.textContent = 'Далее →';
       }
