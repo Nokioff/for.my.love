@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Полгода вместе ❤</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    background-color: #c1b4a4; 
+    /* Отключаем подсветку при клике на iPhone */
+    -webkit-tap-highlight-color: transparent; 
+  }
+
+  body {
+    background: linear-gradient(180deg, #c1b4a4 0%, #d2c5b6 25%, #d2c5b6 75%, #c1b4a4 100%);
+    color: #4a3f38;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    height: 100vh;
+    height: -webkit-fill-available; /* Фикс высоты для мобильного Safari */
+    overflow: hidden; /* Запрещаем скролл всей страницы */
+  }
+
+  /* ================== ФОНОВЫЕ ЭЛЕМЕНТЫ ================== */
+  .hearts-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  .particle {
+    position: absolute;
+    bottom: -50px;
+    color: #d4af37;
+    opacity: 0;
+    animation: floatUp linear infinite;
+  }
+
+  .particle.heart { font-size: 1.2rem; }
+
+  .particle.dot {
+    width: 3px; height: 3px;
+    background-color: #d4af37;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #d4af37;
+  }
+  
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ================== ОБЛОЖКА ================== */
+  .cover {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    z-index: 10;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+  }
+
+  .cover.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .cover h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 2.8rem; /* Подогнано под iPhone SE */
+    line-height: 1.1;
+    color: #a67c00; 
+    text-shadow: 0 2px 10px rgba(70, 50, 20, 0.5); 
+    animation: rise 1.4s ease both;
+  }
+
+  .cover p {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #47392c; 
+    animation: rise 1.4s 0.3s ease both;
+  }
+
+  .arrow {
+    position: absolute;
+    bottom: 30px;
+    font-size: 2rem;
+    color: #8c6f56;
+    cursor: pointer;
+    padding: 15px;
+    animation: float 2s ease-in-out infinite;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50%      { transform: translateY(10px); opacity: 1; }
+  }
+
+  /* ================== ГАЛЕРЕЯ ================== */
+  .gallery-container {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease 0.4s;
+    position: relative;
+    z-index: 5;
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+
+  .gallery-container.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding: 70px 20px 110px; /* Отступ снизу под кнопки, чтобы ничего не перекрывалось */
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .slide.active {
+    display: flex;
+    flex-direction: column-reverse; /* Фото сверху, текст снизу */
+  }
+
+  .slide.active .slide-text {
+    animation: slideUp 0.7s ease forwards;
+  }
+
+  .slide.active .slide-image {
+    animation: scaleIn 0.7s ease forwards;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .slide-text {
+    flex: none;
+    max-width: 100%;
+    text-align: center;
+    opacity: 0;
+  }
+
+  .slide-text .count {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #8c6f56;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .slide-text .caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    color: #3e3228;
+  }
+
+  .slide-image {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  .slide-image img {
+    width: 100%;
+    height: auto;
+    max-height: 50vh; /* Фото занимает не больше половины экрана */
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(70, 50, 30, 0.3);
+  }
+
+  /* ================== КНОПКИ УПРАВЛЕНИЯ ================== */
+  .controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 20;
+    width: 90%;
+    max-width: 350px;
+    padding-bottom: env(safe-area-inset-bottom); /* Отступ для iPhone с кнопкой "Домой" */
+  }
+
+  .controls button {
+    flex: 1;
+    background: #8c6f56;
+    color: #f6efe6;
+    border: none;
+    padding: 14px 10px;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+
+  /* ================== ФИНАЛЬНЫЙ ЭКРАН ================== */
+  .final-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: linear-gradient(180deg, #c1b4a4 0%, #d2c5b6 50%, #c1b4a4 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 20px;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+  }
+
+  .final-screen.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .final-screen .heart { 
+    font-size: 2.5rem; 
+    margin-bottom: 15px; 
+    color: #a67c00; 
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .final-screen h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 1.3;
+    color: #3e3228;
+    margin-bottom: 30px;
+    padding: 0 10px;
+  }
+
+  .restart-btn {
+    background: transparent;
+    color: #8c6f56;
+    border: 1px solid #8c6f56;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+
+  /* ================== ДЛЯ БОЛЬШИХ ЭКРАНОВ (КОМПЬЮТЕРЫ) ================== */
+  @media (min-width: 769px) {
+    .slide.active {
+      flex-direction: row; /* На пк фото справа, текст слева */
+    }
+    .slide-text {
+      flex: 1;
+      text-align: left;
+    }
+    .slide-text .caption {
+      font-size: 2rem;
+    }
+    .slide-image {
+      flex: 1;
+    }
+    .slide {
+      padding: 50px 5vw;
+      gap: 5vw;
+    }
+    .slide-image img {
+      max-height: 75vh;
+    }
+    .cover h1 {
+      font-size: 4rem;
+    }
+    .final-screen h2 {
+      font-size: 2.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hearts-bg" id="heartsBg"></div>
+
+  <section class="cover" id="cover">
+    <h1>Полгода вместе</h1>
+    <p>и это только начало</p>
+    <div class="arrow" id="startBtn">↓</div>
+  </section>
+
+  <section class="gallery-container" id="gallery">
+    
+    <div class="slide active">
+      <div class="slide-text">
+        <span class="count">01 / 04</span>
+        <p class="caption">Тут наше первое фото. Помню, как мы смеялись над этой случайной картинкой.</p>
+      </div>
+      <div class="slide-image">
+        <img src="1.jpg" alt="Фото 1" class="clickable-img">
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-text">
+        <span class="count">02 / 04</span>
+        <p class="caption">Этот день был особенно теплым. Твой смех до сих пор в голове.</p>
+      </div>
+      <div class="slide-image">
+        <img src="2.jpg" alt="Фото 2" class="clickable-img">
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-text">
+        <span class="count">03 / 04</span>
+        <p class="caption">Здесь мы просто гуляли и никуда не спешили. Мой любимый кадр.</p>
+      </div>
+      <div class="slide-image">
+        <img src="3.jpg" alt="Фото 3" class="clickable-img">
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-text">
+        <span class="count">04 / 04</span>
+        <p class="caption">А это фото с самого обычного дня, который стал особенным, потому что ты была рядом.</p>
+      </div>
+      <div class="slide-image">
+        <img src="4.jpg" alt="Фото 4" class="clickable-img">
+      </div>
+    </div>
+
+  </section>
+
+  <div class="controls" id="navControls" style="display: none;">
+    <button id="prevBtn">← Назад</button>
+    <button id="nextBtn">Далее →</button>
+  </div>
+
+  <section class="final-screen" id="finalScreen">
+    <div class="heart">❤</div>
+    <h2>Спасибо за эти полгода.<br>Впереди ещё много кадров.</h2>
+    <button class="restart-btn" id="restartBtn">Смотреть сначала</button>
+  </section>
+
+  <script>
+    const heartsBg = document.getElementById('heartsBg');
+    for (let i = 0; i < 25; i++) {
+      const particle = document.createElement('div');
+      const isHeart = Math.random() > 0.5; 
+      if (isHeart) {
+        particle.className = 'particle heart';
+        particle.innerHTML = '❤';
+      } else {
+        particle.className = 'particle dot';
+      }
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.animationDuration = (Math.random() * 8 + 7) + 's';
+      particle.style.animationDelay = Math.random() * 5 + 's';
+      heartsBg.appendChild(particle);
+    }
+
+    const cover = document.getElementById('cover');
+    const gallery = document.getElementById('gallery');
+    const startBtn = document.getElementById('startBtn');
+    const navControls = document.getElementById('navControls');
+    const finalScreen = document.getElementById('finalScreen');
+    
+    startBtn.addEventListener('click', () => {
+      cover.classList.add('hidden');
+      gallery.classList.add('active');
+      navControls.style.display = 'flex';
+    });
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function updateControls() {
+      const nextBtn = document.getElementById('nextBtn');
+      if (currentSlide === totalSlides - 1) {
+        nextBtn.textContent = 'К финалу ✨';
+      } else {
+        nextBtn.textContent = 'Далее →';
+      }
+    }
+
+    function showSlide(index) {
+      if (index >= totalSlides) {
+        finalScreen.classList.add('active');
+        return;
+      }
+      if (index < 0) {
+        index = 0;
+      }
+
+      slides.forEach(slide => slide.classList.remove('active'));
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      updateControls();
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => showSlide(currentSlide + 1));
+    document.getElementById('prevBtn').addEventListener('click', () => showSlide(currentSlide - 1));
+
+    document.querySelectorAll('.clickable-img').forEach(img => {
+      img.addEventListener('click', () => showSlide(currentSlide + 1));
+    });
+
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      finalScreen.classList.remove('active');
+      showSlide(0);
+    });
+
+    updateControls();
+  </script>
+
+</body>
+</html>
