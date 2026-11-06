@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <p <<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Для любимой ❤</title>
+<title>Для Сашули ❤</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
@@ -134,11 +134,10 @@
     display: none;
     width: 100%;
     height: 100%;
-    /* Увеличил нижний отступ до 160px, чтобы кнопки не перекрывали текст */
-    padding: 70px 20px 160px; 
+    padding: 60px 20px 160px; 
     align-items: center;
     justify-content: center;
-    gap: 25px;
+    gap: 15px;
   }
 
   .slide.active {
@@ -233,6 +232,7 @@
     color: #3e3228;
   }
 
+  /* Обновленный блок фото */
   .slide-image {
     flex: none;
     width: 100%;
@@ -240,6 +240,9 @@
     position: relative;
     cursor: zoom-in;
     opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .slide-image img {
@@ -248,13 +251,25 @@
     max-height: 50vh; 
     object-fit: contain; 
     border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(70, 50, 30, 0.3);
+    /* Убрал тень, чтобы фото не выделялось фоном */
+    box-shadow: none; 
     transition: transform 0.3s ease, filter 0.3s ease;
     filter: brightness(0.85); 
   }
 
   .slide-image:hover img {
     filter: brightness(1);
+  }
+
+  /* Текст подсказки под фото */
+  .photo-hint {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #7a5a1c; /* Темно-золотистый, чтобы читалось */
+    margin-top: 10px;
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+    font-style: italic;
   }
 
   /* ================== ПОЛНОЭКРАННЫЙ ПРОСМОТР ================== */
@@ -413,7 +428,7 @@
       flex: 1;
     }
     .slide-image img {
-      max-height: 75vh;
+      max-height: 70vh;
     }
     .cover h1 {
       font-size: 4rem;
@@ -457,6 +472,7 @@
       </div>
       <div class="slide-image">
         <img src="1.jpg" alt="Фото 1" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
@@ -467,6 +483,7 @@
       </div>
       <div class="slide-image">
         <img src="2.jpg" alt="Фото 2" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
@@ -477,6 +494,7 @@
       </div>
       <div class="slide-image">
         <img src="3.jpg" alt="Фото 3" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
@@ -487,6 +505,7 @@
       </div>
       <div class="slide-image">
         <img src="4.jpg" alt="Фото 4" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
@@ -497,6 +516,7 @@
       </div>
       <div class="slide-image">
         <img src="5.jpg" alt="Фото 5" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
@@ -507,6 +527,7 @@
       </div>
       <div class="slide-image">
         <img src="6.jpg" alt="Фото 6" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
@@ -517,16 +538,18 @@
       </div>
       <div class="slide-image">
         <img src="7.jpg" alt="Фото 7" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
     <div class="slide">
       <div class="slide-text">
         <span class="count">08 / 12</span>
-        <p class="caption">Как я ради тебя ехал к тебе, только для того, чтобы увидеть тебя, любимую, помнишь?</p>
+        <p class="caption">Как я ехал к тебе, только для того, чтобы увидеть тебя, любимую, помнишь?</p>
       </div>
       <div class="slide-image">
         <img src="8.jpg" alt="Фото 8" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
@@ -537,6 +560,7 @@
       </div>
       <div class="slide-image">
         <img src="9.jpg" alt="Фото 9" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
@@ -547,6 +571,7 @@
       </div>
       <div class="slide-image">
         <img src="10.jpg" alt="Фото 10" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
@@ -557,27 +582,36 @@
       </div>
       <div class="slide-image">
         <img src="11.jpg" alt="Фото 11" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
     <div class="slide">
       <div class="slide-text">
         <span class="count">12 / 12</span>
-        <p class="caption">Тут напиши текст для двенадцатого фото</p>
+        <p class="caption">А как ты была у меня дома в птз?</p>
       </div>
       <div class="slide-image">
         <img src="12.jpg" alt="Фото 12" class="clickable-img">
+        <span class="photo-hint">можешь нажать на фото</span>
       </div>
     </div>
 
     <div class="slide text-slide">
       <div class="slide-text">
         <div class="caption">
-          <p>Сашуль, тут ты можешь написать свой большой текст.</p>
-          <p>Например, целое письмо для неё. Этот блок можно скроллить, если текста будет много, он не вылезет за пределы экрана.</p>
-          <p>Фон здесь теплый, чтобы текст читался легко и выглядел благородно. Когда закончишь читать, нажми кнопку внизу «К финалу», и откроется последний экран с сердечком.</p>
-          <p>Добавляй столько абзацев, сколько захочешь. Текст будет плавно скроллиться вверх-вниз пальцем или колесиком мышки.</p>
-        </div>
+          <p>Сашуль, я безумно сильно тебя люблю, я очень рад что мы с тобой фоткались, я часто люблю их пересматривать, особенно в те моменты когда становится тяжело.</p>
+          <p>Я безумно рад тому, что ты появилась в моей жизни и даришь мне веселые моменты в моей жизни. Мне очень жалко что у нас в последнее время появляются тяжелые ссоры. <p>
+          <p>Делаю этот сайт Сашуль, на выходных, уже ни на что не надеясь, я буду рад, если мы опять с тобой сойдемся, ты скажешь мне мои ошибки и мы продолжим с тобой наши отношения <p>
+          <p>Может где то будут ошибки Сашуль, недочеты, за это извини, писал это все в слезах, надеясь на самое лучшее. Хочу сказать тебе огромное спасибо еще раз, за все моменты со мной <p>
+          <p>Сашуленька, я тебя безумно невозможно люблю, я изменился ради тебя, чтобы ты стала ближе ко мне. Ты самое лучшее что происходило в моей жизни. <p>
+          <p>Я так безумно рад твоей поддержки, тому как можешь выслушать и помочь мне. Ты действительно лучший человек, как для меня, так и для других. С тобой всегда безумно приятно общаться милая. <p>
+          <p>Ты для меня, самая красивая, я невозможно люблю твою красоту, люблю твое отношение ко мне, люблю все что ты делаешь относясь ко мне и  самое главное, люблю и обожаю тебя невозможно сильно. <p>
+          <p>Я невозможно сильно буду рад тому, что за время как ты находишься одна, от моего общения и внимания, мы вернемся друг к другу снова. И я надеюсь в принципе, то что я что то значу в твоей жизни <p>
+          <p>Спасибо большое за пройденные 7 месяцев, как и надеюсь на следующие, не месяцы, а года. Ты просто у меня самый замечательный человек, я бы хотел, чтобы ты осталась со мной навсегда. <p>
+          <p>Я надеюсь тебе понравился мой подарок, я очень старался ради тебя и буду стараться дальше Сашуль. В заключение скажу, люблю тебя и обожаю невозможно сильно дорогая Сашуленька, так, как не любил и обожал никого другого. <p>
+          <p>Люблю тебя, Саш, твой Ваня ❤ <p>
+       </div>
       </div>
     </div>
 
@@ -590,8 +624,8 @@
 
   <section class="final-screen" id="finalScreen">
     <div class="heart">❤</div>
-    <h2>Милая, спасибо тебе большое за это все время с тобой<br>Ты действительно стала для меня частью, моей жизни</h2>
-    <button class="restart-btn" id="restartBtn">Смотреть сначала</button>
+    <h2>Милая, спасибо тебе большое за это все время с тобой.<br>Ты действительно стала для меня частью, моей жизни.</h2>
+    <button class="restart-btn" id="restartBtn">Начать сначала</button>
   </section>
 
   <div class="lightbox" id="lightbox">
@@ -691,10 +725,10 @@
     function updateControls() {
       const nextBtn = document.getElementById('nextBtn');
       if (slides[currentSlide].classList.contains('text-slide')) {
-        nextBtn.textContent = 'К финалу';
+        nextBtn.textContent = 'К концу';
       } 
       else if (currentSlide === 11) {
-        nextBtn.textContent = 'К тексту';
+        nextBtn.textContent = 'К главному';
       } 
       else {
         nextBtn.textContent = 'Дальше →';
